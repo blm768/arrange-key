@@ -26,25 +26,16 @@
         {
             "name": "Linux",
             "includePath": [
-                "/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.1/../../../../include/c++/7.3.1",
-                "/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.1/../../../../include/c++/7.3.1/x86_64-pc-linux-gnu",
-                "/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.1/../../../../include/c++/7.3.1/backward",
-                "/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.1/include",
-                "/usr/local/include",
-                "/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.1/include-fixed",
                 "/usr/include",
                 "${workspaceRoot}",
                 "/usr/include/qt/QtWidgets",
-                "/usr/include/qt"
+                "/usr/include/qt",
+                "/usr/include/qt/QtCore"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",
             "browse": {
                 "path": [
-                    "/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.1/../../../../include/c++/7.3.1",
-                    "/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.1/../../../../include/c++/7.3.1/x86_64-pc-linux-gnu",
-                    "/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.1/../../../../include/c++/7.3.1/backward",
-                    "/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.1/include",
                     "/usr/local/include",
                     "/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.1/include-fixed",
                     "/usr/include",
@@ -52,7 +43,10 @@
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
-            }
+            },
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
         },
         {
             "name": "Win32",
