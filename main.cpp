@@ -3,6 +3,7 @@
 #include <QApplication>
 #include <QTableView>
 #include <QHBoxLayout>
+#include <QHeaderView>
 
 #include "compose_parser.h"
 #include "mainwindow.h"
@@ -20,6 +21,7 @@ int main(int argc, char *argv[])
     ComposeEntryModel entry_model(std::move(entries));
     QTableView table;
     table.setModel(&entry_model);
+    table.horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     QHBoxLayout layout;
     layout.addWidget(&table);

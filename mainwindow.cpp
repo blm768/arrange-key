@@ -1,7 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "unicode.h"
 
+#include <algorithm>
 #include <cassert>
+#include <experimental/iterator>
 #include <sstream>
 
 ComposeEntryModel::ComposeEntryModel(std::vector<ComposeEntry>&& entries) : _entries(entries) { }
@@ -11,7 +14,7 @@ int ComposeEntryModel::rowCount(const QModelIndex& parent) const {
 }
 
 int ComposeEntryModel::columnCount(const QModelIndex& parent) const {
-    return parent.isValid() ? 0 : 2;
+    return parent.isValid() ? 0 : 3;
 }
 
 QVariant ComposeEntryModel::data(const QModelIndex& index, int role) const {
@@ -25,14 +28,26 @@ QVariant ComposeEntryModel::data(const QModelIndex& index, int role) const {
     case Qt::DisplayRole:
         switch(index.column()) {
         case 0: {
-            // Join codes into one string.
-            // See https://stackoverflow.com/questions/1430757/c-vector-to-string
+            // Join key code names into one string.
             std::ostringstream stream;
-            std::copy(entry.key_codes.begin(), entry.key_codes.end(), std::ostream_iterator<std::string>(stream, " "));
+            std::transform(
+                entry.key_codes.begin(), entry.key_codes.end(),
+                std::experimental::ostream_joiner<std::string>(stream, " "),
+                [] (auto s) { return "<" + s + ">"; }
+            );
             return QString::fromStdString(stream.str());
         }
         case 1:
             return QString::fromStdString(entry.result);
+        case 2: {
+            auto names = code_point_names(entry.result);
+            std::ostringstream stream;
+            std::copy(
+                names.begin(), names.end(),
+                std::experimental::ostream_joiner<std::string>(stream, " + ")
+            );
+            return QString::fromStdString(stream.str());
+        }
         default:
             assert(false);
         }

@@ -9,14 +9,18 @@ TEMPLATE = app
 QMAKE_CXXFLAGS += -std=c++17
 DEFINES += QT_DEPRECATED_WARNINGS
 
+LIBS += -licuuc
+
 SOURCES += \
         compose_parser.cpp \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        unicode.cpp
 
 HEADERS += \
         compose_parser.h \
-        mainwindow.h
+        mainwindow.h \
+        unicode.h
 
 FORMS += \
         mainwindow.ui
